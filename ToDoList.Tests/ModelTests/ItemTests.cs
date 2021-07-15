@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ToDoList.Models;
 using System.Collections.Generic;
+using ToDoList.Models;
 using System;
 
 namespace ToDoList.Tests
@@ -24,9 +24,14 @@ namespace ToDoList.Tests
     [TestMethod]
     public void GetDescription_ReturnsDescription_String()
     {
+      //Arrange
       string description = "Walk the dog.";
+
+      //Act
       Item newItem = new Item(description);
       string result = newItem.Description;
+
+      //Assert
       Assert.AreEqual(description, result);
     }
 
@@ -52,16 +57,13 @@ namespace ToDoList.Tests
       // Arrange
       List<Item> newList = new List<Item> { };
 
-      //Act
+      // Act
       List<Item> result = Item.GetAll();
 
-      foreach (Item thisItem in result)
-      {
-        Console.WriteLine("Output from empty list GetAll test: " + thisItem.Description);
-      }
       // Assert
       CollectionAssert.AreEqual(newList, result);
     }
+
     [TestMethod]
     public void GetAll_ReturnsItems_ItemList()
     {
@@ -75,15 +77,8 @@ namespace ToDoList.Tests
       //Act
       List<Item> result = Item.GetAll();
 
-      foreach (Item thisItem in result)
-      {
-        Console.WriteLine("Output from second GetAll test: " + thisItem.Description);
-      }
-
       //Assert
       CollectionAssert.AreEqual(newList, result);
     }
-
-
   }
 }
