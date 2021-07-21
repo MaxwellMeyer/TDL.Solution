@@ -5,6 +5,7 @@ namespace ToDoList.Models
   public class Item
   {
     public string Description { get; set; }
+    public int Id { get; }
     private static List<Item> _instances = new List<Item> { };
 
     public static List<Item> GetAll()
@@ -19,6 +20,7 @@ namespace ToDoList.Models
     {
       Description = description;
       _instances.Add(this);
+      Id = _instances.Count;
     }
 
 
