@@ -1,6 +1,8 @@
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/ToDoList.Views.dll
+/Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/ToDoList.Views.pdb
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/ToDoList.Tests.deps.json
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/ToDoList.Tests.runtimeconfig.json
 /Users/max.welll/Desktop/epicodus/may/ToDoList.Solution/ToDoList.Tests/bin/Debug/net5.0/ToDoList.Tests.runtimeconfig.dev.json
