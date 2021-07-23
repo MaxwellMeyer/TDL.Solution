@@ -7,12 +7,7 @@ namespace ToDoList.Controllers
   public class ItemsController : Controller
   {
 
-    [HttpPost("/items")]
-    public ActionResult Create(string description)
-    {
-      Item myItem = new Item(description);
-      return RedirectToAction("Index");
-    }
+
     [HttpGet("/items/{id}")]
     [HttpGet("/categories/{categoryId}/items/{itemId}")]
     public ActionResult Show(int categoryId, int itemId)
@@ -26,10 +21,11 @@ namespace ToDoList.Controllers
     }
 
 
-    [HttpGet("/items/new")]
-    public ActionResult New()
+    [HttpGet("/categories/{categoryId}/items/new")]
+    public ActionResult New(int categoryId)
     {
-      return View();
+      Category category = Category.Find(categoryId);
+      return View(category);
     }
 
     [HttpPost("/items/delete")]
