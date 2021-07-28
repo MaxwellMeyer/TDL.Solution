@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace ToDoList.Models
 {
@@ -16,6 +17,11 @@ namespace ToDoList.Models
       Id = _instances.Count;
       Items = new List<Item> { };
     }
+    public Category(string name, int id)
+    {
+      Name = name;
+      Id = id;
+    }
 
     public static void ClearAll()
     {
@@ -24,7 +30,25 @@ namespace ToDoList.Models
 
     public static List<Category> GetAll()
     {
-      return _instances;
+      List<Category> allCategories = new List<Category> { };
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM categories;";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while (rdr.Read())
+      {
+        int categoryId = rdr.GetInt32(0);
+        string categoryDescription = rdr.GetString(1);
+        Category newCategory = new Category(categoryDescription, categoryId);
+        allCategories.Add(newCategory);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allCategories;
     }
 
     public static Category Find(int searchId)

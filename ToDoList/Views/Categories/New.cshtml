@@ -1,8 +1,7 @@
-<h1>Add a new item to @Model.Name</h1>
+<h1>Add a new item</h1>
 
-<form action="/categories/@Model.Id/items" method="post">
-  <input id="categoryId" name="categoryId" type="hidden" value="@Model.Id">
-  <label for="itemDescription">Item Description</label>
-  <input id="itemDescription" name="itemDescription" type="text">
-  <button type='submit'>Add Item</button>
+<form action="/categories" method="post">
+  <label for="categoryDescription">Category Description</label>
+  <input id="categoryDescription" name="categoryDescription" type="text">
+  <button type='submit'>Add Category</button>
 </form>
