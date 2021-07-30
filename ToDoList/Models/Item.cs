@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 
-
-namespace ToDoList.Models
-{
   namespace ToDoList.Models
   {
     public class Item
@@ -11,4 +8,3 @@ namespace ToDoList.Models
       public string Description { get; set; }
     }
   }
-}
