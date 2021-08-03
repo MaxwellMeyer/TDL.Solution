@@ -20,3 +20,17 @@ body {
     blue
   );
 }
+
+.done {
+  color: red;
+  font-weight: bolder;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.inProg {
+  color: rgb(0, 226, 0);
+  text-shadow: 1px 1px rgb(60, 255, 0);
+  font-weight: bold;
+  text-decoration: underline overline;
+}

@@ -14,9 +14,19 @@
 
 @foreach (Item item in Model)
 {
-  <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })
-  <a href="/items/@item.ItemId/statusComplete">Mark as Complete</a>
+  @if (item.Status == true)
+  {
+    <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="done">DONEZO</span><a
+    href="/items/@item.ItemId/statusIncomplete">Mark as INCOMPLETE</a>
 </li>
+  }
+  else if (item.Status == false)
+  {
+    <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="inProg">IN
+    PROGRESS</span><a href="/items/@item.ItemId/statusComplete">Mark as COMPLETE</a></li>
+
+  }
 }
+
 
 <p>@Html.ActionLink("Add new item", "Create")</p>

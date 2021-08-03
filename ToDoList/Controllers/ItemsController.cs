@@ -111,11 +111,21 @@ public ActionResult DeleteCategory(int joinId)
     return RedirectToAction("Index");
 }
 
-[HttpGet("/{itemId}/statusComplete")]
+[HttpGet("/items/{itemId}/statusComplete")]
 public ActionResult StatusComplete (int itemId)
 {
     Item item = _db.Items.FirstOrDefault(item => item.ItemId == itemId);
     item.Status = true;
+    _db.SaveChanges();
+
+    return RedirectToAction("Index");
+}
+
+[HttpGet("/items/{itemId}/statusIncomplete")]
+public ActionResult StatusIncomplete (int itemId)
+{
+    Item item = _db.Items.FirstOrDefault(item => item.ItemId == itemId);
+    item.Status = false;
     _db.SaveChanges();
 
     return RedirectToAction("Index");
