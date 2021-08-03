@@ -110,5 +110,15 @@ public ActionResult DeleteCategory(int joinId)
     _db.SaveChanges();
     return RedirectToAction("Index");
 }
-  }
+
+[HttpGet("/{itemId}/statusComplete")]
+public ActionResult StatusComplete (int itemId)
+{
+    Item item = _db.Items.FirstOrDefault(item => item.ItemId == itemId);
+    item.Status = true;
+    _db.SaveChanges();
+
+    return RedirectToAction("Index");
+}
+}
 }

@@ -6,4 +6,17 @@ div#footer {
   color: #ccc;
   background: #333;
   padding: 8px;
+  background: linear-gradient(to bottom, rgb(0, 255, 213), greenyellow);
+}
+body {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    rgb(120, 1, 255),
+    rgb(0, 153, 255),
+    rgb(24, 113, 255),
+    blue
+  );
 }
