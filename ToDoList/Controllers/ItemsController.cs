@@ -8,27 +8,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ToDoList.Controllers
 {
-  public class ItemsController : Controller
-  {
+public class ItemsController : Controller
+{
     private readonly ToDoListContext _db;
 
     public ItemsController(ToDoListContext db)
     {
-      _db = db;
+    _db = db;
     }
 
     public ActionResult Index()
 {
     return View(_db.Items.ToList());
 }
-public ActionResult Create()
+    public ActionResult Create()
 {
     ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
     return View();
 }
 
-[HttpPost]
-public ActionResult Create(Item item, int CategoryId)
+    [HttpPost]
+    public ActionResult Create(Item item, int CategoryId)
 {
     _db.Items.Add(item);
     _db.SaveChanges();
@@ -41,7 +41,7 @@ public ActionResult Create(Item item, int CategoryId)
 }
 
 
-public ActionResult Details(int id)
+    public ActionResult Details(int id)
 {
     var thisItem = _db.Items
         .Include(item => item.JoinEntities)
@@ -49,23 +49,21 @@ public ActionResult Details(int id)
         .FirstOrDefault(item => item.ItemId == id);
     return View(thisItem);
 }
-public ActionResult Edit(int id)
+    public ActionResult Edit(int id)
 {
     var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
     ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
     return View(thisItem);
 }
 
-[HttpPost]
+    [HttpPost]
     public ActionResult Edit(Item item, int CategoryId)
     {
-      if (CategoryId != 0)
-      {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
-      }
-      _db.Entry(item).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+    if (CategoryId != 0)  {
+    _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId }); }
+    _db.Entry(item).State = EntityState.Modified;
+    _db.SaveChanges();
+        return RedirectToAction("Index");
     }
 
     public ActionResult AddCategory(int id)
@@ -75,8 +73,8 @@ public ActionResult Edit(int id)
     return View(thisItem);
 }
 
-[HttpPost]
-public ActionResult AddCategory(Item item, int CategoryId)
+    [HttpPost]
+    public ActionResult AddCategory(Item item, int CategoryId)
 {
     if (CategoryId != 0)
     {
@@ -87,14 +85,14 @@ public ActionResult AddCategory(Item item, int CategoryId)
 }
 
 
-public ActionResult Delete(int id)
+    public ActionResult Delete(int id)
 {
     var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
     return View(thisItem);
 }
 
-[HttpPost, ActionName("Delete")]
-public ActionResult DeleteConfirmed(int id)
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
 {
     var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
     _db.Items.Remove(thisItem);
@@ -102,8 +100,8 @@ public ActionResult DeleteConfirmed(int id)
     return RedirectToAction("Index");
 }
 
-[HttpPost]
-public ActionResult DeleteCategory(int joinId)
+    [HttpPost]
+    public ActionResult DeleteCategory(int joinId)
 {
     var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CategoryItemId == joinId);
     _db.CategoryItem.Remove(joinEntry);
@@ -111,23 +109,21 @@ public ActionResult DeleteCategory(int joinId)
     return RedirectToAction("Index");
 }
 
-[HttpGet("/items/{itemId}/statusComplete")]
-public ActionResult StatusComplete (int itemId)
+    [HttpGet("/items/{itemId}/statusComplete")]
+    public ActionResult StatusComplete (int itemId)
 {
     Item item = _db.Items.FirstOrDefault(item => item.ItemId == itemId);
     item.Status = true;
     _db.SaveChanges();
-
     return RedirectToAction("Index");
 }
 
-[HttpGet("/items/{itemId}/statusIncomplete")]
-public ActionResult StatusIncomplete (int itemId)
+    [HttpGet("/items/{itemId}/statusIncomplete")]
+    public ActionResult StatusIncomplete (int itemId)
 {
     Item item = _db.Items.FirstOrDefault(item => item.ItemId == itemId);
     item.Status = false;
     _db.SaveChanges();
-
     return RedirectToAction("Index");
 }
 }

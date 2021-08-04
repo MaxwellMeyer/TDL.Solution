@@ -21,6 +21,18 @@ else
       <li>@join.Category.Name</li>
     }
   </ul>
+  <h4>Item STATUS:</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+      @if (@join.Item.Status == true)
+      {
+        <li><span class="donezo">DONEZO</span></li>
+      }
+      else if (@join.Item.Status == false)
+      {
+        <li><span class="inProg">IN PROGRESS</span></li>
+      }
+  </ul>
 }
 
 <p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.ItemId })
