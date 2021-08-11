@@ -61,5 +61,12 @@ public async Task<ActionResult> Login(LoginViewModel model)
         return View();
     }
 }
+
+[HttpPost]
+public async Task<ActionResult> LogOff()
+{
+    await _signInManager.SignOutAsync();
+    return RedirectToAction("Index");
+}
     }
 }
