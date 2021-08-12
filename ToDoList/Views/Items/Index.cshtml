@@ -3,30 +3,34 @@
 }
 
 @using ToDoList.Models;
-@model List<ToDoList.Models.Item>;
+@model IEnumerable<ToDoList.Models.Item>
 
-<h1>Items</h1>
+<h1>Items for @User.Identity.Name</h1>
 
-@if (@Model.Count == 0)
+@if (Model.Any())
 {
-  <h3>No items have been added yet!</h3>
-}
 
-@foreach (Item item in Model)
-{
-  @if (item.Status == true)
+  @foreach (Item item in Model)
   {
-    <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="done">DONEZO</span><a
+    @if (item.Status == true)
+    {
+      <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="done">DONEZO</span><a
     href="/items/@item.ItemId/statusIncomplete">Mark as INCOMPLETE</a>
 </li>
-  }
-  else if (item.Status == false)
-  {
-    <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="inProg">IN
+    }
+    else if (item.Status == false)
+    {
+      <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })<span class="inProg">IN
     PROGRESS</span><a href="/items/@item.ItemId/statusComplete">Mark as COMPLETE</a></li>
 
+    }
+    else
+    {
+      <h3>No items have been added yet!</h3>
+    }
   }
 }
 
+<p>@Html.ActionLink("Add new item", "Create")</p>
 
-<p>@Html.ActionLink("Add new item", "Create") @Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
